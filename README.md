@@ -31,11 +31,18 @@
 dotnet run --project Lab1Kalk
 ```
 
+## Логирование
+
+Модуль `Logger` (`Lab1Kalk/Logger.cs`) пишет все события приложения
+в консоль и в файл `logs/app.log` (каталог создаётся автоматически).
+Уровни логирования: `INFO`, `WARN`, `ERROR`.
+
 ## Структура проекта
 
 ```text
 Lab1Kalk.sln
 └── Lab1Kalk/
     ├── Lab1Kalk.csproj
+    ├── Logger.cs
     └── Program.cs
 ```

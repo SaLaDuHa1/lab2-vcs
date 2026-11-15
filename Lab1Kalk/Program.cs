@@ -28,7 +28,7 @@ public class PdfReport : IReportGenerator
     public void Generate(string data)
     {
         // Здесь была бы реальная работа с библиотекой типа iTextSharp
-        Console.WriteLine($"[PDF] Генерация отчёта в '{_outputPath}': {data}");
+        Logger.Info($"[PDF] Генерация отчёта в '{_outputPath}': {data}");
     }
 }
 
@@ -44,7 +44,7 @@ public class ExcelReport : IReportGenerator
 
     public void Generate(string data)
     {
-        Console.WriteLine($"[EXCEL] Генерация отчёта в '{_outputPath}': {data}");
+        Logger.Info($"[EXCEL] Генерация отчёта в '{_outputPath}': {data}");
     }
 }
 
@@ -60,7 +60,7 @@ public class HtmlReport : IReportGenerator
 
     public void Generate(string data)
     {
-        Console.WriteLine($"[HTML] Генерация отчёта в '{_outputPath}': {data}");
+        Logger.Info($"[HTML] Генерация отчёта в '{_outputPath}': {data}");
     }
 }
 
@@ -81,7 +81,7 @@ public class ReportService
 
     public void GenerateAll(string data)
     {
-        Console.WriteLine($"=== Генерация отчёта: {data} ===\n");
+        Logger.Info($"=== Генерация отчёта: {data} ===");
 
         // Прогоняем данные через ВСЕ доступные форматы
         foreach (var generator in _generators)
@@ -104,7 +104,7 @@ public class CsvReport : IReportGenerator
 
     public void Generate(string data)
     {
-        Console.WriteLine($"[CSV] Генерация отчёта в '{_outputPath}': {data}");
+        Logger.Info($"[CSV] Генерация отчёта в '{_outputPath}': {data}");
     }
 }
 
@@ -116,6 +116,8 @@ class Program
 {
     static void Main()
     {
+        Logger.Info("Запуск системы генерации отчётов");
+
         // 1. Создаём узлы сети (конкретные реализации)
         var pdf = new PdfReport("report.pdf");
         var excel = new ExcelReport("report.xlsx");
@@ -129,11 +131,13 @@ class Program
         service.GenerateAll("Квартальный отчёт за Q1 2025");
 
         // 4. Демонстрация расширяемости: добавляем CSV БЕЗ изменения ReportService
-        Console.WriteLine("\n--- Добавляем новый формат (CSV) ---\n");
+        Logger.Info("--- Добавляем новый формат (CSV) ---");
         var csv = new CsvReport("report.csv");
         var newGenerators = new List<IReportGenerator>(generators) { csv };
         var extendedService = new ReportService(newGenerators);
 
         extendedService.GenerateAll("Квартальный отчёт за Q1 2025");
+
+        Logger.Info("Работа системы завершена");
     }
 }

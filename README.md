@@ -1,5 +1,7 @@
 # Проект ЛР №1 — система генерации отчётов (версия из main, дополнена из ветки)
 
+![CI](https://github.com/SaLaDuHa1/lab2-vcs/actions/workflows/ci.yml/badge.svg)
+
 ## Автор
 
 Гордич Дмитрий, группа ИСТ-41
@@ -47,12 +49,29 @@ dotnet run --project Lab1Kalk
 в консоль и в файл `logs/app.log` (каталог создаётся автоматически).
 Уровни логирования: `INFO`, `WARN`, `ERROR`.
 
+## Тестирование
+
+Модульные тесты (xUnit) проверяют, что `ReportService` вызывает все
+подключённые генераторы и передаёт им одни и те же данные.
+
+```bash
+dotnet test
+```
+
+CI-пайплайн GitHub Actions автоматически собирает проект и запускает
+тесты при каждом push и pull request в ветку `main`
+(`.github/workflows/ci.yml`).
+
 ## Структура проекта
 
 ```text
 Lab1Kalk.sln
-└── Lab1Kalk/
-    ├── Lab1Kalk.csproj
-    ├── Logger.cs
-    └── Program.cs
+├── Lab1Kalk/
+│   ├── Lab1Kalk.csproj
+│   ├── Logger.cs
+│   └── Program.cs
+├── Lab1Kalk.Tests/
+│   ├── Lab1Kalk.Tests.csproj
+│   └── ReportServiceTests.cs
+└── .github/workflows/ci.yml
 ```

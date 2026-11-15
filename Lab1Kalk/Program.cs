@@ -122,9 +122,10 @@ class Program
         var pdf = new PdfReport("report.pdf");
         var excel = new ExcelReport("report.xlsx");
         var html = new HtmlReport("report.html");
+        var markdown = new MarkdownReport("report.md");
 
         // 2. Формируем сеть: передаём узлы в основной модуль
-        var generators = new List<IReportGenerator> { pdf, excel, html };
+        var generators = new List<IReportGenerator> { pdf, excel, html, markdown };
         var service = new ReportService(generators);
 
         // 3. Используем систему

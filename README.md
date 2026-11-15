@@ -12,8 +12,8 @@
 через интерфейсы и внедрение зависимостей.
 
 Центром «сетевой» структуры является интерфейс `IReportGenerator`.
-Каждый формат отчёта (`PdfReport`, `ExcelReport`, `HtmlReport`, `CsvReport`)
-реализует этот интерфейс и не зависит от остальных классов.
+Каждый формат отчёта (`PdfReport`, `ExcelReport`, `HtmlReport`, `CsvReport`,
+`MarkdownReport`) реализует этот интерфейс и не зависит от остальных классов.
 Основной модуль `ReportService` зависит только от абстракции
 `IEnumerable<IReportGenerator>`, поэтому новый формат можно добавить
 без изменения существующего кода.
@@ -23,7 +23,7 @@
 | Компонент | Роль |
 | --- | --- |
 | `IReportGenerator` | абстракция узла сети |
-| `PdfReport`, `ExcelReport`, `HtmlReport`, `CsvReport` | конкретные реализации (узлы) |
+| `PdfReport`, `ExcelReport`, `HtmlReport`, `CsvReport`, `MarkdownReport` | конкретные реализации (узлы) |
 | `ReportService` | основной модуль, зависит от абстракции |
 | `Program` | композиция сети и точка входа |
 
@@ -69,6 +69,7 @@ Lab1Kalk.sln
 ├── Lab1Kalk/
 │   ├── Lab1Kalk.csproj
 │   ├── Logger.cs
+│   ├── MarkdownReport.cs
 │   └── Program.cs
 ├── Lab1Kalk.Tests/
 │   ├── Lab1Kalk.Tests.csproj

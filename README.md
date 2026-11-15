@@ -25,6 +25,16 @@
 | `ReportService` | основной модуль, зависит от абстракции |
 | `Program` | композиция сети и точка входа |
 
+## Установка
+
+Требуется [.NET SDK 8.0](https://dotnet.microsoft.com/download) или новее.
+
+```bash
+git clone https://github.com/SaLaDuHa1/lab2-vcs.git
+cd lab2-vcs
+dotnet restore
+```
+
 ## Запуск
 
 ```bash
